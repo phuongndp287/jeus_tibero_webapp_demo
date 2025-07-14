@@ -52,7 +52,15 @@ This generates a `.war` file in the `target` directory.
 ### **4. Deploying on JEUS**
 - Upload the WAR file to JEUS's deployment directory or deploy it through the JEUS Management Console.
 - Configure the application's data source within the JEUS server to use the Tibero JDBC driver.
-
+  - Step 1: Applications > Install > Select file `.war` in path.
+  ![img.png](img.png)
+  - Step 2: Deploy
+    -  ![img_1.png](img_1.png)
+    -  ![img_2.png](img_2.png)
+  - Step 3: Login application: http://<server-ip>:8088/login
+    - ![img_3.png](img_3.png)
+      email: admin@example.com
+      password: admin123
 ## Project Structure
 1. **Frontend**:
    - Uses JSP for server-side rendering.
