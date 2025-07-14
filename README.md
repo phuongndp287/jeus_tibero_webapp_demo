@@ -1,82 +1,92 @@
-# README
-## Overview
-This project is a responsive and user-friendly **Login Page** developed using `JSP (Java Server Pages)` and styled with modern front-end tools such as **Bootstrap** and **Google Fonts**. It includes basic functionality like email/password fields and a multi-language toggle that currently supports **English (EN)** and **Korean (KR)**.
-## Features
-### ✔️ Responsive Design
-- Built with **Bootstrap 5** for a sleek and modern look across various screen sizes.
-- **Mobile-friendly** layout ensures accessibility on any device.
+This project demonstrates a **web application** built and deployed using **JEUS 8.5** as the application server and **Tibero** as the database management system. It leverages modern Java web technologies to create a robust and scalable web application.
+## Technologies Used
+### **1. JEUS 8.5**
+- Application server for hosting and running enterprise Java applications.
+- Provides a reliable, secure, and efficient environment for deploying web applications.
 
-### ✔️ Language Toggle
-- Users can switch between **English** and **Korean** languages effortlessly using a **language selector**.
-- Labels, placeholders, and other visible texts update dynamically based on the selected language.
+### **2. Tibero**
+- High-performance RDBMS (Relational Database Management System) used as the backend database.
+- JDBC driver (`tbjdbc8`) is used for database connectivity.
+- Ensures enterprise-grade performance and scalability.
 
-### ✔️ Customizable Styling
-- **Google Fonts (Poppins)** used for elegant typography.
-- Color scheme and spacing implemented with custom CSS for better usability.
+### **3. Maven**
+- Standard build tool for managing dependencies and the project lifecycle.
+- Simplifies dependency management and package builds.
 
-### ✔️ Core Elements:
-- **Email** and **Password** fields with input validation.
-- Prominent **Login Button** styled for user convenience.
-- Option to redirect new users to a **Signup Page**.
+### **4. Java EE**
+- The application uses the **Java EE** ecosystem for enterprise features such as Servlets, JSPs, and JSTL.
+- Supports standard interfaces with robust integration strategies.
 
-### ✔️ Dynamic Language Switching with JavaScript
-- JavaScript is used for immediate text updates, providing a seamless user experience.
+### **5. Dependencies**
+The project dependencies are configured in for smooth integration: `pom.xml`
+- **Tibero JDBC Driver (`tbjdbc8`)**: Allows database connectivity.
+- **Java EE API**: Provides standard interfaces for core Java EE features.
+- **JSTL (Java Server Pages Standard Tag Library)**: For creating dynamic content in JSPs.
+- Other tools such as the Maven Compiler and WAR plugins are included for smooth development and packaging.
 
-## File Structure
-- **HTML/JSP code** renders the login form with required fields and labels.
-- **CSS styles** inlined for simplicity, defining layout, spacing, and branding.
-- **JavaScript** manages the dynamic language toggle functionality.
+### **6. Front-End Integration**
+- Bootstrap for responsive design.
+- Optionally supports language localization and customization.
 
-## How to Use
-### Prerequisites:
-1. Ensure you have a Java-based environment supported by your application server (e.g., Apache Tomcat).
-2. The project is built using JSP and assumes integration within a web server setup.
+## Setup Instructions
+### **1. Prerequisites**
+Before deploying this application, ensure the following:
+- **JEUS 8.5** is properly installed and configured.
+- **Tibero RDBMS** is installed with a valid schema for the application.
+- Maven is installed to build and package the application.
 
-### Steps:
-1. **Load the JSP into your server**: Ensure the file is located in the appropriate directory as per your server's configuration.
-2. **Access the Login Page**: Open a browser and navigate to the respective URL for the login form.
-3. **Switch Language**:
-    - Use the buttons in the **Language Selector** at the top-right of the page to switch between **English** and **Korean**.
+### **2. Database Configuration**
+- Update the Tibero database configuration (URL, username, password, etc.) in the relevant places (e.g., `data source configuration` in JEUS or application-specific properties).
+- Ensure the `tbjdbc8` dependency is included and loaded by the JEUS server.
 
-4. **Submit Login**:
-    - Enter your email and password, then press the **Login** button.
+### **3. Building the Application**
+Run the following Maven commands:
+``` sh
+# To clean previous builds
+mvn clean
 
-5. **Redirect to Signup**:
-    - If you are a new user, click the **Signup link** to navigate to the signup page.
+# To package into a WAR file
+mvn package
+```
+This generates a `.war` file in the `target` directory.
+### **4. Deploying on JEUS**
+- Upload the WAR file to JEUS's deployment directory or deploy it through the JEUS Management Console.
+- Configure the application's data source within the JEUS server to use the Tibero JDBC driver.
 
-## Customization
-**1. Updating Styles:** Modify the CSS for:
-- **Fonts:** Change `font-family` in the `<style>` section.
-- **Colors & Layout:** Update background colors or button styles as needed.
+## Project Structure
+1. **Frontend**:
+   - Uses JSP for server-side rendering.
+   - CSS and JavaScript for UI and dynamic behavior.
 
-**2. Adding More Languages:** Enhance the `changeLanguage` function with additional language keys and translations.
-**3. Backend Integration:** Link the form's `action` attribute to your server backend for authentication.
-## Dependencies
-### Frontend Libraries:
-- **Bootstrap 5.3**: For responsive layout and styling.
-- **Google Fonts (Poppins)**: For modern typography.
+2. **Backend**:
+   - Java EE Servlets for handling requests and responses.
+   - Tibero database as the core data store.
 
-### JavaScript:
-- Included as inline `<script>` for dynamic functionality.
+3. **Build Tool**:
+   - Maven for dependency management and compiling the project.
 
-## Screenshots
-### Desktop Layout:
-- A clean and centered login form with prominent features (e.g., login button, language selector).
+## Key Configuration Files
+1. : **pom.xml**
+   - Specifies dependencies such as Tibero JDBC, Java EE API, and JSTL.
+   - Configures the Maven WAR and compiler plugins.
 
-### Mobile Layout:
-- Fully responsive and scaled appropriately for smaller screens.
+2. **Web Deployment Descriptor** (, if used): `web.xml`
+   - Configures servlets, JSPs, and other application components.
+
+3. **JEUS Data Source Configuration**:
+   - Configures the connection pool and binds application resources to the Tibero database.
+
+## Running the Application
+1. Build the application using Maven.
+2. Deploy the WAR file on JEUS via the management console or CLI.
+3. Access the application by navigating to its URL (e.g., `http://<server-ip>:<port>/<context-path>`).
+4. Ensure the Tibero database is connected and accessible.
+
+## Notes
+- Ensure proper encoding settings (e.g., UTF-8) in both the database and the application.
+- Add additional localization support or customized themes as needed.
 
 ## Future Enhancements
-1. **Add More Languages**:
-    - Extend the `languageSelector` to include additional languages.
-
-2. **Forgot Password Functionality**:
-    - Add a "Forgot Password" link for user assistance.
-
-3. **Enhance Security**:
-    - Implement proper input sanitization and secure form submissions via HTTPS.
-
-## License
-This project is open-source and can be freely used and modified as per your needs.
-### Support
-If you encounter any issues or need help integrating this login page with your project, feel free to reach out. Happy coding! 😊
+- Integrate security features such as Single Sign-On (SSO) or OAuth.
+- Add support for more databases (if required) and backend services.
+- Implement advanced error logging and monitoring features.
